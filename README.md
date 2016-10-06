@@ -12,7 +12,7 @@ KnowYourPorts is built on Python 2.7 and uses the Service Name and Port Number R
 This app claims no affiliation with IANA.  
 
 
-## Usage - Console ##
+## Usage - Console
 ```
 python ports.py <port number>
 ```
@@ -25,6 +25,14 @@ Telnet
 The whole command (including python and the full path to the ports app) can easily be aliased to whatever is a good mnemonic, I would suggest simply "ports".
 
 
-##Usage - Web##
+## Usage - Web
 Start "web.py".  Open a web browser to the specified URL.  
 This requires [Flask](http://flask.pocoo.org/) and the Python standard library.  With those two requirements satisfied, this is a self-contained web app.  
+
+## License
+
+KnowYourPorts is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+KnowYourPorts is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with KnowYourPorts.  If not, see <http://www.gnu.org/licenses/>.
