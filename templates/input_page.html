@@ -1,0 +1,18 @@
+<html>
+<head>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+
+<div id="form">
+<h2>Know Your Ports</h2>
+<form action="/" method="POST">
+<input class="user" name="port_input" placeholder="Enter a TCP/IP port number."type=text>
+<br>
+<input class="user" value="Submit" type=submit onclick=submit>
+<h3> {{ port }} {{ explain }}</h3>
+<h2 class="result">{{ result }}</h2>
+</form>
+</div>
+</body>
+</html>
