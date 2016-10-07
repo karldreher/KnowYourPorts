@@ -1,18 +1,35 @@
-<html>
-<head>
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
-</head>
-<body>
-
-<div id="form">
-<h2>Know Your Ports</h2>
-<form action="/" method="POST">
-<input class="user" name="port_input" placeholder="Enter a TCP/IP port number."type=text>
-<br>
-<input class="user" value="Submit" type=submit onclick=submit>
-<h3> {{ port }} {{ explain }}</h3>
-<h2 class="result">{{ result }}</h2>
-</form>
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <div id="form">
+      <h2>Know Your Ports</h2>
+      <form action="/" method="POST">
+        <input class="user" name="port_input" placeholder="Enter a TCP/IP port number."type=text>
+        <br>
+        <input class="user" value="Submit" type=submit onclick=submit>
+        <h3> {{ port }} {{ explain }}</h3>
+        <h2 class="result">{{ result }}</h2>
+      </form>
+    </div> -->
+    <div class="site-wrapper">
+      <header>
+        <h1>Know Your Ports</h1>
+      </header>
+      <section id="submit-port">
+        <form action="/" method="POST">
+          <input type="text" class="form-item" name="port_input" placeholder="Enter a TCP/IP port number">
+          <input type="submit" onclick="submit" class="btn-submit" value="Submit">
+        </form>
+      </section>
+      <section class="result">
+        <p> {{ port }} {{ explain }} </p>
+        <h2>{{ result }}</h2>
+      </section>
+    </div>
+  </body>
 </html>
