@@ -29,6 +29,8 @@ The whole command (including python and the full path to the ports app) can easi
 Start "web.py".  Open a web browser to the specified URL.  
 This requires [Flask](http://flask.pocoo.org/) and the Python standard library.  With those two requirements satisfied, this is a self-contained web app.  
 
+You can check out a hosted version here:  http://knowyourports.pythonanywhere.com/
+
 ## License
 
 KnowYourPorts is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
