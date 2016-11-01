@@ -38,9 +38,3 @@ input[type=submit] {
     box-sizing: border-box;
 	text-align: center;
 }
-
-#response{
-margin-top:5%;
-background: lightgreen;
-
-}
