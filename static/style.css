@@ -4,7 +4,7 @@
 	font-weight: bold;
 	text-align: center;
 	margin-top: 100px;
-	}
+}
 	
 .user{
 	font-size: large;
@@ -15,22 +15,21 @@
 }
 
 .result{
-	margin-top: -2%
+	margin-top: -2%;
 	
 }
 
 input[type=text] {
-    width: 40%;
-    padding: 12px 20px;
+	width: 40%;
+	padding: 12px 20px;
 	border-radius: 5%;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	text-align: center;
 }
 
 input[type=submit] {
-    width: 20%;
-    padding: 12px 20px;
-
-    box-sizing: border-box;
+	width: 20%;
+	padding: 12px 20px;
+	box-sizing: border-box;
 	text-align: center;
 }
