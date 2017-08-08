@@ -29,7 +29,7 @@ def listports():
                 number = port.find('{http://www.iana.org/assignments}number')
                 name = port.find('{http://www.iana.org/assignments}description')
                 if number != None:
-                    print number.text,name.text
+                    print(number.text,name.text)
 
 def update_db():
     #not perfect.  Needs duplicate removal.  Some records are listed twice.
@@ -74,10 +74,10 @@ if __name__ == '__main__':
     #would like to have output on one line, this worked before and I broke it by fixing something else.  
     
     if len(sys.argv) <= 1:
-        print " Usage:     python ports.py portnumber"
-        print "\n"
+        print(" Usage:     python ports.py portnumber")
+        print("\n")
     else:    
         for name in sys.argv[1:]:
             for i in search_port(name):
-                print (i)
+                print(i)
             

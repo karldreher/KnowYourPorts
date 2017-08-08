@@ -1,7 +1,8 @@
-# Use an official Python runtime as a parent image
-FROM python:2.7-slim
+# Use official Python3 parent image
+FROM python:3-alpine
 
 ADD . .
+
 # Install any needed packages specified in requirements
 RUN pip install flask
 
