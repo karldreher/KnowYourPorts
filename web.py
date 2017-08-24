@@ -24,9 +24,14 @@ def submit():
     except:
         return render_template('input_page.html')
 
-    explain = "is the port number for"
     result = ports.search_port(portInt)
-    return render_template('input_page.html', port=portInt, result=result[1], explain=explain)
-
+    if result != None:      
+        explain = "is the port number for"
+        return render_template('input_page.html', port=portInt, result=result[1], explain=explain)
+    elif result == None:
+        explain = "No result for "
+        result = "No service found!"
+        return render_template('error_page.html', port=portInt, result=result, explain=explain)
+  
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)

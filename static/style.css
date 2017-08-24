@@ -20,6 +20,12 @@
 	
 }
 
+.bad{
+	margin-top: -2%;
+	background-color: gold;
+	
+}
+
 input[type=text] {
 	width: 40%;
 	padding: 12px 20px;

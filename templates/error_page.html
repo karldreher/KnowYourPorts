@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Know Your Ports</title>
+    <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet"
+    type="text/css">
+</head>
+<body id="main">
+    <header><h2>Know Your Ports</h2></header>
+    <section id="form">
+      <form action="/" method="post">
+          <input autofocus="" class="user" name="port_input" placeholder=
+          "Enter a TCP/IP port number." type="text"><br>
+          <input class="user" onclick="submit" type="submit" value="Submit">
+      </form>
+    </section>
+    <section class="output">
+      <h2 class="bad">{{ result }}</h2>
+    </section>  
+</body>
+</html>
