@@ -26,8 +26,13 @@ The whole command (including python and the full path to the ports app) can easi
 
 
 ## Usage - Web
-Start "web.py".  Open a web browser to the specified URL.  
-This requires [Flask](http://flask.pocoo.org/) and the Python standard library.  With those two requirements satisfied, this is a self-contained web app.  
+Start "web.py".  Open a web browser to the specified URL.
+This requires [Flask](http://flask.pocoo.org/) and the Python standard library.  With those two requirements satisfied, this is a self-contained web app.
+
+```bash
+$ pip install Flask
+$ (export PORT=4000; python web.py) # This sets the port to run on, 80 is default
+```
 
 You can check out a hosted version here:  http://knowyourports.pythonanywhere.com/
 
