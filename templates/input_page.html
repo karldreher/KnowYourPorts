@@ -9,14 +9,16 @@
             <input class="user" onclick="submit" type="submit" value="Submit">
         </form>
     </section>
-    <section class="output">
-        {% if success == True %}
-            <h3>{{ port }} {{ explain }}</h3>
-            <h2 class="result">{{ result }}</h2>
-        {% else %}
-            <h3>{{ explain }} {{ port }}. Try again.</h3>
-            <h2 class="bad">{{ result }}</h2>
-        {% endif %}
-    </section>
+    {% if result %}
+        <section class="output">
+            {% if success == True %}
+                <h3>{{ port }} {{ explain }}</h3>
+                <h2 class="result">{{ result }}</h2>
+            {% else %}
+                <h3>{{ explain }} {{ port }}. Try again.</h3>
+                <h2 class="bad">{{ result }}</h2>
+            {% endif %}
+        </section>
+    {% endif %}
 {% endblock %}
 

@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/index')
 @app.route('/', methods=['GET'])
 def entry():
-    return render_template('input_page.html')
+    return render_template('input_page.html', result=False)
 
 
 @app.route('/', methods=['POST'])
@@ -29,6 +29,7 @@ def submit():
     if result != None:      
         explain = "is the port number for"
         success = True
+        result = result[1]
     else:
         explain = "No result for "
         result = "No service found!"

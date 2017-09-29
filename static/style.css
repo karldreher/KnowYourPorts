@@ -61,4 +61,8 @@ input[type=submit] {
 		max-width: 300px;
 		margin: 0 auto;
 	}
+	.result, .bad {
+		padding: .8em .2em;
+	}
+
 }
