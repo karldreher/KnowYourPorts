@@ -4,7 +4,7 @@
 <registry xmlns="http://www.iana.org/assignments" id="service-names-port-numbers">
   <title>Service Name and Transport Protocol Port Number Registry</title>
   <category>Service Names and Transport Protocol Port Numbers</category>
-  <updated>2017-08-24</updated>
+  <updated>2017-09-28</updated>
   <xref type="rfc" data="rfc6335"/>
   <expert>TCP/UDP: Joe Touch; Eliot Lear, Allison Mankin, Markku Kojo, Kumiko Ono, Martin Stiemerling, 
 Lars Eggert, Alexey Melnikov, Wes Eddy, Alexander Zimmermann, Brian Trammell, and Jana Iyengar
@@ -54182,8 +54182,19 @@ common service discovery mechanisms.</note>
     <description>Assuria Log Manager</description>
     <number>4119</number>
   </record>
-  <record updated="2007-02-01">
-    <description>Unassigned</description>
+  <record date="2017-09-28">
+    <name>minirem</name>
+    <protocol>tcp</protocol>
+    <assignee>
+      <xref type="person" data="MobilePro_Systems"/>
+    </assignee>
+    <description>MiniRem Remote Telemetry and Control</description>
+    <number>4120</number>
+    <xref type="person" data="Sean_Solberg"/>
+  </record>
+  <record>
+    <protocol>udp</protocol>
+    <description>Reserved</description>
     <number>4120</number>
   </record>
   <record date="2006-12">
@@ -65010,9 +65021,26 @@ common service discovery mechanisms.</note>
   </record>
   <record>
     <description>Unassigned</description>
-    <number>5647-5669</number>
-    <unauthorized>Known UNAUTHORIZED USE: Port 5666</unauthorized>
-    
+    <number>5647-5665</number>
+  </record>
+  <record date="2017-09-06">
+    <name>nrpe</name>
+    <protocol>tcp</protocol>
+    <assignee>
+      <xref type="person" data="Nagios_Enterprises_LLC"/>
+    </assignee>
+    <description>Nagios Remote Plugin Executor</description>
+    <number>5666</number>
+    <xref type="person" data="Bryan_Heden"/>
+  </record>
+  <record>
+    <protocol>udp</protocol>
+    <description>Reserved</description>
+    <number>5666</number>
+  </record>
+  <record>
+    <description>Unassigned</description>
+    <number>5667-5669</number>
   </record>
   <record date="2012-11-01" updated="2013-02-25">
     <name>filemq</name>
@@ -84657,24 +84685,24 @@ common service discovery mechanisms.</note>
     <description>NFS mount protocol</description>
     <number>20048</number>
   </record>
-  <record>
+  <record updated="2017-09-05">
     <name>nfsrdma</name>
     <protocol>tcp</protocol>
-    <xref type="rfc" data="rfc5666"/>
+    <xref type="draft" data="RFC-ietf-nfsv4-rfc5667bis-13"/>
     <description>Network File System (NFS) over RDMA</description>
     <number>20049</number>
   </record>
-  <record>
+  <record updated="2017-09-05">
     <name>nfsrdma</name>
     <protocol>udp</protocol>
-    <xref type="rfc" data="rfc5666"/>
+    <xref type="draft" data="RFC-ietf-nfsv4-rfc5667bis-13"/>
     <description>Network File System (NFS) over RDMA</description>
     <number>20049</number>
   </record>
-  <record>
+  <record updated="2017-09-05">
     <name>nfsrdma</name>
     <protocol>sctp</protocol>
-    <xref type="rfc" data="rfc5666"/>
+    <xref type="draft" data="RFC-ietf-nfsv4-rfc5667bis-13"/>
     <description>Network File System (NFS) over RDMA</description>
     <number>20049</number>
   </record>
@@ -91378,6 +91406,26 @@ fwver=&lt;firmware version&gt;</note>
     <note>Defined TXT keys: None</note>
     <xref type="person" data="Rob_Griffin_3"/>
   </record>
+  <record date="2017-09-26">
+    <name>demoncamremote</name>
+    <protocol>tcp</protocol>
+    <assignee>
+      <xref type="person" data="James_Alan_Bush"/>
+    </assignee>
+    <description>Peer-to-peer real-time video streaming</description>
+    <note>Defined TXT keys: None</note>
+    <xref type="person" data="James_Alan_Bush"/>
+  </record>
+  <record date="2017-09-26">
+    <name>demoncamremote</name>
+    <protocol>udp</protocol>
+    <assignee>
+      <xref type="person" data="James_Alan_Bush"/>
+    </assignee>
+    <description>Peer-to-peer real-time video streaming</description>
+    <note>Defined TXT keys: None</note>
+    <xref type="person" data="James_Alan_Bush"/>
+  </record>
   <record>
     <name>device-info</name>
     <description>Device Info</description>
@@ -92111,6 +92159,16 @@ There is no possibility of name conflict because (by definition) GUIDs are globa
     <description>Home Media Control Protocol</description>
     <note>Defined TXT keys: None</note>
     <xref type="person" data="Will_Lahr"/>
+  </record>
+  <record date="2017-09-05">
+    <name>hola</name>
+    <protocol>tcp</protocol>
+    <assignee>
+      <xref type="person" data="Navneet_Gupta"/>
+    </assignee>
+    <description>An application to communicate with other</description>
+    <note>Defined TXT keys: None</note>
+    <xref type="person" data="Navneet_Gupta"/>
   </record>
   <record>
     <name>home-sharing</name>
@@ -95648,6 +95706,14 @@ cport= the port for the content HTTP server
     <xref type="person" data="Broadband_Forum"/>
     <xref type="uri" data="http://www.broadband-forum.org/assignments"/>
   </record>
+  <record date="2017-09-28">
+    <name>usp-agt-ws</name>
+    <protocol>tcp</protocol>
+    <description>USP discovery</description>
+    <note>Defined TXT keys: see www.broadband-forum.org/assignments</note>
+    <xref type="person" data="Broadband_Forum"/>
+    <xref type="uri" data="http://www.broadband-forum.org/assignments"/>
+  </record>
   <record date="2017-01-12">
     <name>usp-ctr-coap</name>
     <protocol>udp</protocol>
@@ -95666,6 +95732,14 @@ cport= the port for the content HTTP server
   </record>
   <record date="2017-01-12">
     <name>usp-ctr-stomp</name>
+    <protocol>tcp</protocol>
+    <description>USP discovery</description>
+    <note>Defined TXT keys: see www.broadband-forum.org/assignments</note>
+    <xref type="person" data="Broadband_Forum"/>
+    <xref type="uri" data="http://www.broadband-forum.org/assignments"/>
+  </record>
+  <record date="2017-09-28">
+    <name>usp-ctr-ws</name>
     <protocol>tcp</protocol>
     <description>USP discovery</description>
     <note>Defined TXT keys: see www.broadband-forum.org/assignments</note>
@@ -99014,7 +99088,7 @@ implementations.  See RFC 3692 for details.</footnote>
     <person id="Broadband_Forum">
       <name>Broadband Forum</name>
       <uri>mailto:info&amp;broadband-forum.org</uri>
-      <updated>2017-01-12</updated>
+      <updated>2017-09-28</updated>
     </person>
     <person id="Broadband_Forum_2">
       <org>Broadband Forum</org>
@@ -99136,6 +99210,11 @@ implementations.  See RFC 3692 for details.</footnote>
     <person id="Bryan_Cole">
       <name>Bryan Cole</name>
       <uri>mailto:bryan.cole&amp;teraview.com</uri>
+    </person>
+    <person id="Bryan_Heden">
+      <name>Bryan Heden</name>
+      <uri>mailto:bheden&amp;nagios.com</uri>
+      <updated>2017-09-06</updated>
     </person>
     <person id="Bryan_Otey">
       <name>Bryan Otey</name>
@@ -105699,6 +105778,11 @@ implementations.  See RFC 3692 for details.</footnote>
       <name>James A. Brewster</name>
       <uri>mailto:jimbrew&amp;answersoft.com</uri>
     </person>
+    <person id="James_Alan_Bush">
+      <name>James Alan Bush</name>
+      <uri>mailto:jamesalanbush&amp;yahoo.com</uri>
+      <updated>2017-09-26</updated>
+    </person>
     <person id="James_Anson">
       <name>James Anson</name>
       <uri>mailto:janson&amp;bigpond.com</uri>
@@ -111709,6 +111793,11 @@ implementations.  See RFC 3692 for details.</footnote>
       <uri>mailto:stephane.magnenat&amp;mobsya.org</uri>
       <updated>2016-08-18</updated>
     </person>
+    <person id="MobilePro_Systems">
+      <org>MobilePro Systems</org>
+      <uri>mailto:info&amp;mobileprosystems.com</uri>
+      <updated>2017-09-28</updated>
+    </person>
     <person id="modbus.org">
       <org>modbus.org</org>
       <uri>mailto:rbelliardi&amp;modbus.org</uri>
@@ -111866,6 +111955,11 @@ implementations.  See RFC 3692 for details.</footnote>
       <uri>mailto:ncount&amp;dejongfrz.nl</uri>
       <updated>2013-01-22</updated>
     </person>
+    <person id="Nagios_Enterprises_LLC">
+      <org>Nagios Enterprises, LLC</org>
+      <uri>mailto:techteam&amp;nagios.com</uri>
+      <updated>2017-09-06</updated>
+    </person>
     <person id="Nancy_Davoust">
       <name>Nancy Davoust</name>
       <uri>mailto:n.davoust&amp;cablelabs.com</uri>
@@ -111967,6 +112061,11 @@ implementations.  See RFC 3692 for details.</footnote>
       <org>National Marine Electronics Association</org>
       <uri>mailto:sspitzer&amp;nmea.org</uri>
       <updated>2011-09-15</updated>
+    </person>
+    <person id="Navneet_Gupta">
+      <name>Navneet Gupta</name>
+      <uri>mailto:gupta-navneet&amp;live.com</uri>
+      <updated>2017-09-05</updated>
     </person>
     <person id="Navtech_Radar_Ltd">
       <org>Navtech Radar</org>
@@ -116258,6 +116357,11 @@ implementations.  See RFC 3692 for details.</footnote>
     <person id="Sean_MacGuire">
       <name>Sean MacGuire</name>
       <uri>mailto:sean&amp;maclawran.ca</uri>
+    </person>
+    <person id="Sean_Solberg">
+      <name>Sean Solberg</name>
+      <uri>mailto:sean.solberg&amp;mobileprosystems.com</uri>
+      <updated>2017-09-28</updated>
     </person>
     <person id="Sean_Ni">
       <name>Sean Ni</name>

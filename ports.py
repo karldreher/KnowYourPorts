@@ -16,7 +16,7 @@ def setup_db():
     #connect to db and create table for ports.  
     db = sqlite3.connect('ports.sqlite')
     cur = db.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Description TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Description TEXT, Protocol TEXT)")
     db.commit()
     db.close()
 
@@ -28,8 +28,10 @@ def listports():
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
                 name = port.find('{http://www.iana.org/assignments}description')
+                protocol = port.find('{http://www.iana.org/assignments}protocol')
                 if number != None:
-                    print(number.text,name.text)
+                    if protocol != None:
+                        print(number.text,name.text,protocol.text)
 
 def update_db():
     #not perfect.  Needs duplicate removal.  Some records are listed twice.
@@ -42,9 +44,10 @@ def update_db():
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
                 name = port.find('{http://www.iana.org/assignments}description')
-
+                protocol = port.find('{http://www.iana.org/assignments}protocol')
                 if number != None:
-                    cur.execute("INSERT INTO PORTS VALUES (null,?,?);", (number.text,name.text))
+                    if protocol != None:
+                        cur.execute("INSERT INTO PORTS VALUES (null,?,?,?);", (number.text,name.text,protocol.text))
         db.commit()
         db.close()
 
@@ -53,7 +56,7 @@ def search_port(number):
         query = str(number)
         db = sqlite3.connect('ports.sqlite')
         cur = db.cursor()
-        cur.execute("SELECT Port,Description FROM PORTS WHERE Port=?", (query,))
+        cur.execute("SELECT Port,Description,upper(Protocol) FROM PORTS WHERE Port=?", (query,))
         db.commit()
 
         #for now, fetchone to get single entry.
@@ -63,6 +66,7 @@ def search_port(number):
         db.close()
         
         if row != None:
+            #when transport protocol features can be implemented, edit this to include str(row[2])
                 return str(row[0]), str(row[1])
         else:
                 return None
