@@ -4,7 +4,6 @@ import sqlite3
 import sys
 
 
-
 def setup_db():
     #needs to be run manually.  If you downloaded this and it came with the SQLITE file, no need unless you want to set up from scratch.  
     db = None
@@ -19,7 +18,6 @@ def setup_db():
     cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Description TEXT, Protocol TEXT)")
     db.commit()
     db.close()
-
 
 def listports():
     #function mainly for testing purposes, to gauge the quality of the data.
@@ -51,7 +49,6 @@ def update_db():
         db.commit()
         db.close()
 
-
 def search_port(number):
         query = str(number)
         db = sqlite3.connect('ports.sqlite')
@@ -70,7 +67,6 @@ def search_port(number):
                 return str(row[0]), str(row[1])
         else:
                 return None
-
 
 
 if __name__ == '__main__':
