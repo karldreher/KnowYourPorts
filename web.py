@@ -18,8 +18,6 @@ def submit():
     request.get_data()
     port = request.form['port_input']
 
-    portInt = 0
-
     try:
         portInt = int(port)
     except:
@@ -36,6 +34,7 @@ def submit():
         success = False
 
     return render_template('input_page.html', success=success, port=portInt, result=result, explain=explain)
-  
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=PORT)
