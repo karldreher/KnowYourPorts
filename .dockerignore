@@ -1,0 +1,4 @@
+*.md
+*.xml
+.git*
+LICENSE
