@@ -34,7 +34,7 @@ $ pip install Flask
 $ (export PORT=4000; python web.py) # This sets the port to run on, 80 is default
 ```
 
-You can check out a hosted version here:  http://knowyourports.pythonanywhere.com/
+You can check out a hosted version here:  https://knowyourports.azurewebsites.net/
 
 ## License
 
