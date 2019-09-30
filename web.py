@@ -37,4 +37,6 @@ def submit():
 
 
 if __name__ == "__main__":
+    ports.setup_db()
+    ports.update_db()
     app.run(host='0.0.0.0', port=PORT)
