@@ -68,16 +68,3 @@ def search_port(number):
         else:
                 return None
 
-
-if __name__ == '__main__':
-    #just in case someone wants to use this on command line, no problem.
-    #would like to have output on one line, this worked before and I broke it by fixing something else.  
-    
-    if len(sys.argv) <= 1:
-        print(" Usage:     python ports.py portnumber")
-        print("\n")
-    else:    
-        for name in sys.argv[1:]:
-            for i in search_port(name):
-                print(i)
-            
