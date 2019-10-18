@@ -1,6 +1,7 @@
 import ports
 import os
 from flask import Flask, render_template, request, url_for
+import waitress
 
 PORT = os.environ.get('PORT', 80)
 app = Flask(__name__)
@@ -39,4 +40,4 @@ def submit():
 if __name__ == "__main__":
     ports.setup_db()
     ports.update_db()
-    app.run(host='0.0.0.0', port=PORT)
+    waitress.serve(app, host='0.0.0.0', port=PORT)

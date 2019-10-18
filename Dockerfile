@@ -4,7 +4,9 @@ FROM python:3-alpine
 ADD . .
 
 # Install any needed packages specified in requirements
+RUN pip install --upgrade pip
 RUN pip install flask
+RUN pip install waitress
 
 RUN wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 
