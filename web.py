@@ -1,6 +1,7 @@
 import ports
 import os
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, abort
+import waitress
 
 PORT = os.environ.get('PORT', 80)
 app = Flask(__name__)
@@ -10,31 +11,29 @@ app = Flask(__name__)
 def entry():
     return render_template('input_page.html', result=False)
 
-
 @app.route('/', methods=['POST'])
 def submit():
     #mysterious, but necessary step.  Without next line, request is null.
     #Alternative is to hard-code request MIME type, which is the "good" way...
     request.get_data()
-    port = request.form['port_input']
+    submitted_port = request.form['port_input']
 
     try:
-        portInt = int(port)
+        portInt = int(submitted_port)
     except:
-        return render_template('input_page.html')
+        abort(400)
 
     result = ports.search_port(portInt)
     if result != None:      
-        explain = "is the port number for"
         success = True
         result = result[1]
     else:
-        explain = "No result for "
-        result = "No service found!"
         success = False
+        result = "No service found!"
 
-    return render_template('input_page.html', success=success, port=portInt, result=result, explain=explain)
-
+    return render_template('input_page.html', success=success, port=portInt, result=result)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=PORT)
+    ports.setup_db()
+    ports.update_db()
+    waitress.serve(app, host='0.0.0.0', port=PORT)

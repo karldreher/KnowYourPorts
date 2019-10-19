@@ -12,19 +12,6 @@ KnowYourPorts is built on Python 3 and uses the Service Name and Port Number Reg
 This app claims no affiliation with IANA.  
 
 
-## Usage - Console
-```
-python ports.py <port number>
-```
-Example:
-```
->python ports.py 23
-23
-Telnet
-```
-The whole command (including python and the full path to the ports app) can easily be aliased to whatever is a good mnemonic, I would suggest simply "ports".
-
-
 ## Usage - Web
 Start "web.py".  Open a web browser to the specified URL.
 This requires [Flask](http://flask.pocoo.org/) and the Python standard library.  With those two requirements satisfied, this is a self-contained web app.
