@@ -13,10 +13,10 @@
     {% if result %}
         <section class="output">
             {% if success == True %}
-                <h3>{{ port }} {{ explain }}</h3>
+                <h3>{{ port }} is the port number for</h3>
                 <h2 class="result">{{ result }}</h2>
             {% else %}
-                <h3>{{ explain }} {{ port }}. Try again.</h3>
+                <h3>No result for {{ port }}. Try again.</h3>
                 <h2 class="bad">{{ result }}</h2>
             {% endif %}
         </section>
