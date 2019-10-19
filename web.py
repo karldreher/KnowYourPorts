@@ -1,6 +1,6 @@
 import ports
 import os
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, abort
 import waitress
 
 PORT = os.environ.get('PORT', 80)
@@ -21,7 +21,7 @@ def submit():
     try:
         portInt = int(submitted_port)
     except:
-        return render_template('input_page.html')
+        abort(400)
 
     result = ports.search_port(portInt)
     if result != None:      
