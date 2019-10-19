@@ -1,5 +1,7 @@
-# Use official Python3 parent image
+# Use official Python3 parent image, upgrade alpine packages
 FROM python:3-alpine
+RUN apk update
+RUN apk upgrade --available
 
 ADD . .
 
