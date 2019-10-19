@@ -17,10 +17,10 @@ def submit():
     #mysterious, but necessary step.  Without next line, request is null.
     #Alternative is to hard-code request MIME type, which is the "good" way...
     request.get_data()
-    port = request.form['port_input']
+    submitted_port = request.form['port_input']
 
     try:
-        portInt = int(port)
+        portInt = int(submitted_port)
     except:
         return render_template('input_page.html')
 
