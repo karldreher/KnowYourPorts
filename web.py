@@ -17,24 +17,22 @@ def submit():
     #mysterious, but necessary step.  Without next line, request is null.
     #Alternative is to hard-code request MIME type, which is the "good" way...
     request.get_data()
-    port = request.form['port_input']
+    submitted_port = request.form['port_input']
 
     try:
-        portInt = int(port)
+        portInt = int(submitted_port)
     except:
         return render_template('input_page.html')
 
     result = ports.search_port(portInt)
     if result != None:      
-        explain = "is the port number for"
         success = True
         result = result[1]
     else:
-        explain = "No result for "
-        result = "No service found!"
         success = False
+        result = "No service found!"
 
-    return render_template('input_page.html', success=success, port=portInt, result=result, explain=explain)
+    return render_template('input_page.html', success=success, port=portInt, result=result)
 
 
 if __name__ == "__main__":
