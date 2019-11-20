@@ -5,7 +5,6 @@ import sys
 
 
 def setup_db():
-    #needs to be run manually.  If you downloaded this and it came with the SQLITE file, no need unless you want to set up from scratch.  
     db = None
     db_exist = os.path.isfile('ports.sqlite')
     if db_exist == True:
