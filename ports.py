@@ -5,7 +5,6 @@ import sys
 
 
 def setup_db():
-    #needs to be run manually.  If you downloaded this and it came with the SQLITE file, no need unless you want to set up from scratch.  
     db = None
     db_exist = os.path.isfile('ports.sqlite')
     if db_exist == True:
@@ -21,7 +20,7 @@ def setup_db():
 
 def listports():
     #function mainly for testing purposes, to gauge the quality of the data.
-        tree = ET.parse('Service Name and Transport Protocol Port Number Registry.xml')
+        tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
