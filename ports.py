@@ -21,7 +21,7 @@ def setup_db():
 
 def listports():
     #function mainly for testing purposes, to gauge the quality of the data.
-        tree = ET.parse('Service Name and Transport Protocol Port Number Registry.xml')
+        tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
