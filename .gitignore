@@ -52,3 +52,5 @@ __pycache__/
 *.py[cod]
 *$py.class
 .idea
+*.sqlite
+service-names-port-numbers.xml
