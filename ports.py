@@ -3,6 +3,9 @@ import os
 import sqlite3
 import sys
 
+sqlite_database = 'ports.sqlite'
+sqlite_database_ro = 'file:ports.sqlite?mode=ro'
+
 class empty_text:
     def __init__(self):
         self.text = ""
@@ -10,13 +13,13 @@ class empty_text:
 
 def setup_db():
     db = None
-    db_exist = os.path.isfile('ports.sqlite')
+    db_exist = os.path.isfile(sqlite_database)
     if db_exist == True:
-        os.remove('ports.sqlite')
+        os.remove(sqlite_database)
     else:
         pass
     #connect to db and create table for ports.  
-    db = sqlite3.connect('ports.sqlite')
+    db = sqlite3.connect(sqlite_database)
     cur = db.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Name TEXT, Description TEXT, Protocol TEXT)")
     db.commit()
@@ -50,7 +53,7 @@ def update_db():
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
 
-        db = sqlite3.connect('ports.sqlite')
+        db = sqlite3.connect(sqlite_database)
         cur = db.cursor()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
@@ -76,7 +79,7 @@ def update_db():
 
 def search_port(number):
         query = str(number)
-        db = sqlite3.connect('ports.sqlite')
+        db = sqlite3.connect(sqlite_database_ro, uri=True)
         cur = db.cursor()
         cur.execute("SELECT Port,Name,Description,upper(Protocol) FROM PORTS WHERE Port=?", (query,))
         db.commit()
