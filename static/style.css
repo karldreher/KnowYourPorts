@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: monospace;
 }
 
 #main{
@@ -15,6 +16,8 @@
 	margin-top:5%;
 	margin-right:auto;
 	margin-left: auto;
+	width: 250px;
+	text-align: center;
 }
 
 .result{
