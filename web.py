@@ -23,10 +23,10 @@ def submit():
     except:
         abort(400)
 
-    result = ports.search_port(portInt)
-    if result != None:      
+    search_result = ports.search_port(portInt)
+    if search_result != None:
         success = True
-        result = result[1]
+        result = search_result[1]
     else:
         success = False
         result = "No service found!"
