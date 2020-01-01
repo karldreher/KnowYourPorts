@@ -69,6 +69,7 @@ def update_db():
                 protocol = port.find('{http://www.iana.org/assignments}protocol')
                 if protocol == None:
                     protocol = empty_text()
+
                 cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (number.text,name.text,description.text,protocol.text))
         db.commit()
         db.close()
@@ -87,8 +88,7 @@ def search_port(number):
         db.close()
         
         if row != None:
-            #when transport protocol features can be implemented, edit this to include str(row[2])
-                return str(row[0]), str(row[1])
+            return str(row[0]), str(row[1]), str(row[2]), str(row[3])
         else:
                 return None
 
