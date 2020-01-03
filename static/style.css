@@ -1,5 +1,6 @@
 * {
 	box-sizing: border-box;
+	font-family: monospace;
 }
 
 #main{
@@ -15,16 +16,18 @@
 	margin-top:5%;
 	margin-right:auto;
 	margin-left: auto;
+	width: 270px;
+	text-align: center;
 }
 
 .result{
-	margin-top: -2%;
+	margin-top: -20px;
 	background-color: lightgreen;
 	
 }
 
 .bad{
-	margin-top: -2%;
+	margin-top: -20px;
 	background-color: gold;
 }
 
@@ -33,6 +36,7 @@ input[type=submit] {
 	padding: 12px 20px;
 	box-sizing: border-box;
 	text-align: center;
+	cursor: pointer;
 }
 
 @media (max-width: 767px) {

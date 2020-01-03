@@ -2,19 +2,28 @@ import xml.etree.ElementTree as ET
 import os
 import sqlite3
 import sys
+from collections import namedtuple
 
+sqlite_database = 'ports.sqlite'
+sqlite_database_ro = 'file:ports.sqlite?mode=ro'
+
+class empty_text:
+    def __init__(self):
+        self.text = ""
+
+labels = ['number','name','description','protocol']
 
 def setup_db():
     db = None
-    db_exist = os.path.isfile('ports.sqlite')
+    db_exist = os.path.isfile(sqlite_database)
     if db_exist == True:
-        os.remove('ports.sqlite')
+        os.remove(sqlite_database)
     else:
         pass
     #connect to db and create table for ports.  
-    db = sqlite3.connect('ports.sqlite')
+    db = sqlite3.connect(sqlite_database)
     cur = db.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Description TEXT, Protocol TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Name TEXT, Description TEXT, Protocol TEXT)")
     db.commit()
     db.close()
 
@@ -24,35 +33,57 @@ def listports():
         root = tree.getroot()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
-                name = port.find('{http://www.iana.org/assignments}description')
+                if number == None:
+                    number = empty_text()
+                
+                name = port.find('{http://www.iana.org/assignments}name')
+                if name == None:
+                    name = empty_text()
+                
+                description = port.find('{http://www.iana.org/assignments}description')
+                if description == None:
+                    description = empty_text()
+                
+
                 protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if number != None:
-                    if protocol != None:
-                        print(number.text,name.text,protocol.text)
+                if protocol == None:
+                    protocol = empty_text()
+                
+                print(number.text,name.text,description.text,protocol.text)
 
 def update_db():
-    #not perfect.  Needs duplicate removal.  Some records are listed twice.
-    #needs to be run manually after first setup.  
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
 
-        db = sqlite3.connect('ports.sqlite')
+        db = sqlite3.connect(sqlite_database)
         cur = db.cursor()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
-                name = port.find('{http://www.iana.org/assignments}description')
+                if number == None:
+                    number = empty_text()
+                
+                name = port.find('{http://www.iana.org/assignments}name')
+                if name == None:
+                    name = empty_text()
+                
+                description = port.find('{http://www.iana.org/assignments}description')
+                if description == None:
+                    description = empty_text()
+                
+
                 protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if number != None:
-                    if protocol != None:
-                        cur.execute("INSERT INTO PORTS VALUES (null,?,?,?);", (number.text,name.text,protocol.text))
+                if protocol == None:
+                    protocol = empty_text()
+
+                cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (number.text,name.text,description.text,protocol.text))
         db.commit()
         db.close()
 
 def search_port(number):
         query = str(number)
-        db = sqlite3.connect('ports.sqlite')
+        db = sqlite3.connect(sqlite_database_ro, uri=True)
         cur = db.cursor()
-        cur.execute("SELECT Port,Description,upper(Protocol) FROM PORTS WHERE Port=?", (query,))
+        cur.execute("SELECT Port,Name,Description,upper(Protocol) FROM PORTS WHERE Port=?", (query,))
         db.commit()
 
         #for now, fetchone to get single entry.
@@ -62,8 +93,10 @@ def search_port(number):
         db.close()
         
         if row != None:
-            #when transport protocol features can be implemented, edit this to include str(row[2])
-                return str(row[0]), str(row[1])
+            result = namedtuple("Port", labels)(*row)
+            return result
+        
+
         else:
                 return None
 
