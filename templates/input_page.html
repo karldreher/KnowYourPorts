@@ -12,12 +12,26 @@
     </section>
     {% if result %}
         <section class="output">
-            {% if success == True %}
+            {% if success == True and result.name|length %}
+            {# Success: show name and description if present #}
                 <h3>{{ port }} is the port number for</h3>
                 <h2 class="result">{{ result.name }}</h2>
-            {% else %}
+
+                {% if result.description|length and result.description != "Unassigned" %}
+                <h3>This port is used for {{ result.description }}.</h3>
+                {% endif %}
+            
+            {% elif success == True and result.name|length < 1 %}
+            {# Success but no name: show description instead #}
+                <h3>{{ port }} is the port number for</h3>
+                <h2 class="result">{{ result.description }}</h2>
+            
+
+            {% elif success == False %}
+            {# No success #}
                 <h3>No result for {{ port }}. Try again.</h3>
                 <h2 class="bad">{{ result }}</h2>
+
             {% endif %}
         </section>
     {% endif %}
