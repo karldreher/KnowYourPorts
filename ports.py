@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import os
 import sqlite3
 import sys
+from collections import namedtuple
 
 sqlite_database = 'ports.sqlite'
 sqlite_database_ro = 'file:ports.sqlite?mode=ro'
@@ -10,6 +11,7 @@ class empty_text:
     def __init__(self):
         self.text = ""
 
+labels = ['number','name','description','protocol']
 
 def setup_db():
     db = None
@@ -91,7 +93,10 @@ def search_port(number):
         db.close()
         
         if row != None:
-            return str(row[0]), str(row[1]), str(row[2]), str(row[3])
+            result = namedtuple("Port", labels)(*row)
+            return result
+        
+
         else:
                 return None
 
