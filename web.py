@@ -17,10 +17,12 @@ def submit():
     #Alternative is to hard-code request MIME type, which is the "good" way...
     request.get_data()
     submitted_port = request.form['port_input']
-
+    if submitted_port == '':
+        return render_template('input_page.html', result=False)
+        
     try:
         portInt = int(submitted_port)
-    except:
+    except ValueError:
         abort(400)
 
     search_result = ports.search_port(portInt)
