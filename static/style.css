@@ -10,7 +10,14 @@
 	text-align: center;
 	margin-top: 100px;
 }
-	
+
+button {
+	width: 20%;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	text-align: center;
+	cursor: pointer;
+}
 .user{
 	font-size: large;
 	margin-top:5%;
@@ -31,18 +38,17 @@
 	background-color: gold;
 }
 
-input[type=submit] {
-	width: 20%;
-	padding: 12px 20px;
-	box-sizing: border-box;
-	text-align: center;
-	cursor: pointer;
-}
 
 @media (max-width: 767px) {
 	html, body {
 		margin: 0;
 		padding: 0;
+	}
+
+	button {
+		width: 90%;
+		max-width: 300px;
+		margin: 0 auto;
 	}
 
 	#main {
@@ -61,11 +67,6 @@ input[type=submit] {
 		margin-bottom: 1.5rem;
 	}
 	
-	input[type=submit] {
-		width: 90%;
-		max-width: 300px;
-		margin: 0 auto;
-	}
 	
 	.result, .bad {
 		padding: .8em .2em;
