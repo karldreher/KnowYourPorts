@@ -10,7 +10,7 @@ COPY . .
 
 # Install any needed packages specified in requirements
 RUN pip install --upgrade pip
-RUN pip install flask waitress
+RUN pip install --no-cache-dir flask waitress
 
 
 # Make port 80 available to the world outside this container
