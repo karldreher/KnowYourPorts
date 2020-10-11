@@ -27,5 +27,8 @@ WORKDIR /home/flask-user
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
+# Run a healthcheck every 30 seconds
+HEALTHCHECK --interval=30s --timeout=30s --start-period=30s CMD python /usr/local/src/knowyourports/healthcheck.py
+
 # Run web.py when the container launches
 CMD ["python", "/usr/local/src/knowyourports/web.py"]

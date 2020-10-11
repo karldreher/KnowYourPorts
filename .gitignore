@@ -54,3 +54,4 @@ __pycache__/
 .idea
 *.sqlite
 service-names-port-numbers.xml
+healthcheck.log

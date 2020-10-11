@@ -35,6 +35,9 @@ def submit():
         result = "No service found!"
 
     return render_template('input_page.html', success=success, port=portInt, result=result)
+@app.route ('/healthcheck')
+def healthcheck():
+    return 'ok'
 
 if __name__ == "__main__":
     ports.setup_db()
