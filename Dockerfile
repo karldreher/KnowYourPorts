@@ -1,6 +1,10 @@
 # Use official Python3 parent image, upgrade alpine packages
 FROM python:3.8-slim-buster
 
+#Set working directory to /usr/local/src
+WORKDIR /usr/local/src/knowyourports
+
+
 #download port number definitions
 ADD https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml .
 
