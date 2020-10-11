@@ -24,7 +24,7 @@ After installing the requirements, start "web.py".  Open a web browser to the sp
 $ wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml 
 $ pip install Flask
 $ pip install waitress
-$ (export PORT=4000; python web.py) # This sets the port to run on, 80 is default
+$ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is default
 ```
 
 
@@ -34,7 +34,7 @@ Docker is the preferred methodology for deploying KnowYourPorts.  A dockerfile i
 
 ```bash
 $ docker build -t knowyourports
-$ docker run -p 80:80 knowyourports 
+$ docker run -p 80:5000 knowyourports 
 
 ```
 

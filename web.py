@@ -3,7 +3,8 @@ import os
 from flask import Flask, render_template, request, url_for, abort
 import waitress
 
-PORT = os.environ.get('PORT', 80)
+#if PORT env is specified, use that, otherwise use port 5000 flask default
+PORT = os.environ.get('PORT', 5000)
 app = Flask(__name__)
 
 @app.route('/index')

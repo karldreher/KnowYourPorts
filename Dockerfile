@@ -7,14 +7,25 @@ WORKDIR /usr/local/src/knowyourports
 #download port number definitions
 ADD https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml .
 
+# Create non-priveleged user
+RUN adduser --disabled-password -gecos '' flask-user
+RUN cp /usr/local/src/knowyourports/service-names-port-numbers.xml /home/flask-user && chown flask-user /home/flask-user/service-names-port-numbers.xml
+
 #copy the rest of the app files
 COPY . .
 
 # Install any needed packages specified in requirements
 RUN pip install --no-cache-dir flask==1.1.2 waitress==1.4.3
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+
+
+# Switch to non-priveleged user
+USER flask-user
+WORKDIR /home/flask-user
+
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
 
 # Run web.py when the container launches
-CMD ["python", "web.py"]
+CMD ["python", "/usr/local/src/knowyourports/web.py"]
