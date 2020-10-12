@@ -2,17 +2,20 @@
 name: CI
 
 on:
-  push:
-    branches: [ development ]
-  pull_request:
-    branches: [ development ]
+  [push]
 
 jobs:
   scan:
     runs-on: ubuntu-latest
 
     steps:
-     - name: Container image scan
-       uses: Azure/container-scan@v0
-       with:
-         image-name: karldreher/knowyourports
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+
+    - name: Container image scan
+      uses: Azure/container-scan@v0
+      with:
+         image-name: karldreher/knowyourports:${{ steps.extract_branch.outputs.branch }}
