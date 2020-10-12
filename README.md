@@ -1,3 +1,5 @@
+![CI-Tests](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests/badge.svg)
+
 # KnowYourPorts
 KnowYourPorts is a web application for looking up TCP/IP ports.  
 
