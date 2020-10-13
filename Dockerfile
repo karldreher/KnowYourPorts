@@ -4,13 +4,8 @@ FROM python:3.8-slim-buster
 #Set working directory to /usr/local/src
 WORKDIR /usr/local/src/knowyourports
 
-#download port number definitions
-ADD https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml .
-
 # Create non-priveleged user
-RUN adduser --disabled-password -gecos '' flask-user && \
-    cp /usr/local/src/knowyourports/service-names-port-numbers.xml /home/flask-user && \
-    chown flask-user /home/flask-user/service-names-port-numbers.xml
+RUN adduser --disabled-password -gecos '' flask-user
 
 #copy the rest of the app files
 COPY . .
@@ -27,6 +22,9 @@ EXPOSE 5000
 
 # Run a healthcheck every 30 seconds
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s CMD python /usr/local/src/knowyourports/healthcheck.py
+
+#download port number definitions
+ADD --chown=flask-user https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml .
 
 # Run web.py when the container launches
 CMD ["python", "/usr/local/src/knowyourports/web.py"]
