@@ -15,16 +15,18 @@ connection = http.client.HTTPConnection('localhost',PORT)
 try:
     request = connection.request('GET', endpoint)
     response = connection.getresponse()
+    responsestring = 'Endpoint ' + endpoint + ' responded ' + str(response.status) + ' ' + response.reason + '.  '
+    
 
     if response.status == 200:
-        logging.info('endpoint \"' + endpoint + '\" returned ' + str(response.status) + ' ' + response.reason)
+        logging.info(responsestring)
 
     if response.status >= 400 and response.status < 500:
-        logging.error('Healthcheck reported '+ str(response.status) +' against endpoint :\"' + endpoint + '\".  However, this response indicates a web service is running.')
-        logging.info('Are you sure this is a KnowYourPorts app?')
+        logging.error(responsestring + 'However, this response indicates a web service is running.')
+        logging.warn('Are you sure this is a KnowYourPorts app?')
 
     if response.status >= 500 and response.status < 600:
-        logging.error('Healthcheck reported '+ str(response.status) +' against endpoint :\"' + endpoint + '\".  More information on next line: ')
+        logging.error(responsestring + 'More information on next line: ')
         logging.error(response.read())
 
 except:
