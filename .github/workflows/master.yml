@@ -3,7 +3,7 @@ name: CI-Tests-master
 
 on:
   [push, pull_request]
-  -branch: master
+  - branch: master
 
 jobs:
   scan:
