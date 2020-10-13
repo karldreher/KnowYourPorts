@@ -13,11 +13,17 @@ def entry():
     return render_template('input_page.html', result=False)
 
 @app.route('/', methods=['POST'])
-def submit():
+def submit():   
     #mysterious, but necessary step.  Without next line, request is null.
     #Alternative is to hard-code request MIME type, which is the "good" way...
+
     request.get_data()
     submitted_port = request.form['port_input']
+    return url_for('/port/' + submitted_port)
+
+@app.route('/port/<int:submitted_port>', methods=['GET'])
+def response(submitted_port):
+
     if submitted_port == '':
         return render_template('input_page.html', result=False)
         
@@ -35,6 +41,10 @@ def submit():
         result = "No service found!"
 
     return render_template('input_page.html', success=success, port=portInt, result=result)
+
+
+
+
 @app.route ('/healthcheck')
 def healthcheck():
     return 'ok'
