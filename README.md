@@ -1,4 +1,4 @@
-![CI-Tests](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests/badge.svg)
+[![CI-Tests: development](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests-development/badge.svg?branch=development)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3ACI-Tests-development) [![CI-Tests: master](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests-development/badge.svg?branch=master)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3ACI-Tests-master)
 
 # KnowYourPorts
 KnowYourPorts is a web application for looking up TCP/IP ports.  

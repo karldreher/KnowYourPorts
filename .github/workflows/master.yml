@@ -1,8 +1,9 @@
 
-name: CI-Tests
+name: CI-Tests-master
 
 on:
   [push, pull_request]
+  -branch: master
 
 jobs:
   scan:
