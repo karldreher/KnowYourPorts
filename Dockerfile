@@ -8,8 +8,9 @@ WORKDIR /usr/local/src/knowyourports
 ADD https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml .
 
 # Create non-priveleged user
-RUN adduser --disabled-password -gecos '' flask-user
-RUN cp /usr/local/src/knowyourports/service-names-port-numbers.xml /home/flask-user && chown flask-user /home/flask-user/service-names-port-numbers.xml
+RUN adduser --disabled-password -gecos '' flask-user && \
+    cp /usr/local/src/knowyourports/service-names-port-numbers.xml /home/flask-user && \
+    chown flask-user /home/flask-user/service-names-port-numbers.xml
 
 #copy the rest of the app files
 COPY . .
