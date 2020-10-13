@@ -2,8 +2,12 @@
 name: CI-Tests-development
 
 on:
-  [push, pull_request]
-  - branch: development
+  push:
+    branches: 
+      - development
+  pull_request:
+    branches:
+      - development
 
 jobs:
   scan:
