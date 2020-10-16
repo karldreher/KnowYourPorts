@@ -27,30 +27,6 @@ def setup_db():
     db.commit()
     db.close()
 
-def listports():
-    #function mainly for testing purposes, to gauge the quality of the data.
-        tree = ET.parse('service-names-port-numbers.xml')
-        root = tree.getroot()
-        for port in root.findall('{http://www.iana.org/assignments}record'):
-                number = port.find('{http://www.iana.org/assignments}number')
-                if number == None:
-                    number = empty_text()
-                
-                name = port.find('{http://www.iana.org/assignments}name')
-                if name == None:
-                    name = empty_text()
-                
-                description = port.find('{http://www.iana.org/assignments}description')
-                if description == None:
-                    description = empty_text()
-                
-
-                protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if protocol == None:
-                    protocol = empty_text()
-                
-                print(number.text,name.text,description.text,protocol.text)
-
 def update_db():
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
