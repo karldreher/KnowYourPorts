@@ -7,10 +7,6 @@ from collections import namedtuple
 sqlite_database = 'ports.sqlite'
 sqlite_database_ro = 'file:ports.sqlite?mode=ro'
 
-class empty_text:
-    def __init__(self):
-        self.text = ""
-
 labels = ['number','name','description','protocol']
 
 def setup_db():
@@ -33,26 +29,28 @@ def update_db():
 
         db = sqlite3.connect(sqlite_database)
         cur = db.cursor()
-        for port in root.findall('{http://www.iana.org/assignments}record'):
-                number = port.find('{http://www.iana.org/assignments}number')
-                if number is None:
-                    number = empty_text()
-                
-                name = port.find('{http://www.iana.org/assignments}name')
-                if name is None:
-                    name = empty_text()
-                
-                description = port.find('{http://www.iana.org/assignments}description')
-                if description is None:
-                    description = empty_text()
-                
+        for record in root.findall('{*}record'):
+            portData = {}
+            for port in record:
+            
+                #if namespace is present (which it will be), remove it
+                tag = port.tag.replace('{http://www.iana.org/assignments}','')
+                #if text is None, replace with empty string
+                if port.text is None:
+                    text = ''
+                else:
+                    text = port.text
+                portData[tag] = text
+                #final data quality check, if these keys do not exist create them, fill with empty string.
+                for key in ('number','name','description','protocol'):
+                    if portData.get(key, -1) != -1:
+                        pass
+                    else:
+                        portData[key] = ''
 
-                protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if protocol is None:
-                    protocol = empty_text()
 
-                cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (number.text,name.text,description.text,protocol.text))
-        db.commit()
+            cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (portData['number'],portData['name'],portData['description'],portData['protocol']))
+            db.commit()
         db.close()
 
 def search_port(number):
@@ -74,5 +72,5 @@ def search_port(number):
         
 
         else:
-                return None
+            return None
 
