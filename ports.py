@@ -29,24 +29,27 @@ def update_db():
 
         db = sqlite3.connect(sqlite_database)
         cur = db.cursor()
+        keys = {'number','name','description','protocol'}
         for record in root.findall('{*}record'):
-            portData = {}
+            portData = dict.fromkeys(keys)
             for port in record:
-            
-                #if namespace is present (which it will be), remove it
-                tag = port.tag.replace('{http://www.iana.org/assignments}','')
-                #if text is None, replace with empty string
-                if port.text is None:
-                    text = ''
-                else:
-                    text = port.text
-                portData[tag] = text
-                #final data quality check, if these keys do not exist create them, fill with empty string.
-                for key in ('number','name','description','protocol'):
-                    if portData.get(key, -1) != -1:
+                for key in keys:
+                    #if namespace is present (which it will be), remove it
+                    tag = port.tag.replace('{http://www.iana.org/assignments}','')
+                    if tag != key:
                         pass
                     else:
-                        portData[key] = ''
+                        #if text is None, replace with empty string
+                        if port.text is None:
+                            text = ''
+                        else:
+                            text = port.text
+                        portData[key] = text
+                        #final data quality check, if these keys do not exist create them, fill with empty string.
+                        if portData.get(key, -1) != -1:
+                            pass
+                        else:
+                            portData[key] = ''
 
 
             cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (portData['number'],portData['name'],portData['description'],portData['protocol']))
