@@ -35,20 +35,20 @@ def update_db():
         cur = db.cursor()
         for port in root.findall('{http://www.iana.org/assignments}record'):
                 number = port.find('{http://www.iana.org/assignments}number')
-                if number == None:
+                if number is None:
                     number = empty_text()
                 
                 name = port.find('{http://www.iana.org/assignments}name')
-                if name == None:
+                if name is None:
                     name = empty_text()
                 
                 description = port.find('{http://www.iana.org/assignments}description')
-                if description == None:
+                if description is None:
                     description = empty_text()
                 
 
                 protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if protocol == None:
+                if protocol is None:
                     protocol = empty_text()
 
                 cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (number.text,name.text,description.text,protocol.text))
