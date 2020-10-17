@@ -19,18 +19,6 @@ KnowYourPorts uses several other components:
 
 
 
-## Usage - Web
-After installing the requirements, start "web.py".  Open a web browser to the specified URL.
-
-```bash
-$ wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml 
-$ pip install Flask
-$ pip install waitress
-$ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is default
-```
-
-
-
 ## Usage - Docker
 Docker is the preferred methodology for deploying KnowYourPorts.  A dockerfile is included in this repo which fulfills all the requirements above.  With Docker installed, this is easy to build and run.
 
@@ -45,6 +33,18 @@ You can also utilize the official [Docker Hub version of KnowYourPorts](https://
 docker pull karldreher/knowyourports
 ```
 
+There are two tags on the official build, `knowyourports:latest` which is built from the `master` branch of this repository, and `knowyourports:development` which follows the `development` branch.
+
+
+## Usage - Non-Docker Python Config
+After installing the requirements, start "web.py".  Open a web browser to the specified URL.  You now have a simple webserver which runs KnowYourPorts.  This is most typically used for development purposes.
+
+```bash
+$ wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
+$ pip install Flask
+$ pip install waitress
+$ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is default
+```
 
 
 ## License
