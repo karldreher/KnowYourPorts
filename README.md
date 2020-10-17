@@ -47,6 +47,9 @@ $ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is defa
 ```
 
 
+## Contributing
+See [contributing.md](contributing.md)
+
 ## License
 
 KnowYourPorts is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
