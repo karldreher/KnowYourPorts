@@ -5,7 +5,7 @@ KnowYourPorts is a web application for looking up TCP/IP ports.
 
 This can be used to quickly check a TCP/IP port number for it's function.  
 
-You can check out a hosted version here:  https://knowyourports.azurewebsites.net/
+You can check out a hosted version here:  https://knowyourports.fly.dev/
 
 
 A good IT professional should memorize the well-known ports, but an even better one will use a tool like this to keep their brainpower free for more practical matters.  
