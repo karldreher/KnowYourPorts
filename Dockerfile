@@ -11,7 +11,7 @@ RUN adduser --disabled-password -gecos '' flask-user
 COPY . .
 
 # Install any needed packages specified in requirements
-RUN pip install --no-cache-dir flask==1.1.2 waitress==1.4.3
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Switch to non-priveleged user
 USER flask-user

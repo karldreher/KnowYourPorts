@@ -41,8 +41,7 @@ After installing the requirements, start "web.py".  Open a web browser to the sp
 
 ```bash
 $ wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
-$ pip install Flask
-$ pip install waitress
+$ pip install -r requirements.txt
 $ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is default
 ```
 
