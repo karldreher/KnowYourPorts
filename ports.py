@@ -32,28 +32,25 @@ def update_db():
         keys = {'number','name','description','protocol'}
         for record in root.findall('{*}record'):
             portData = dict.fromkeys(keys)
+            for key in keys:
+                #ensure all keys are filled with some data.
+                portData[key] = ''
+
             for port in record:
-                for key in keys:
+                for key in keys:         
                     #if namespace is present (which it will be), remove it
                     tag = port.tag.replace('{http://www.iana.org/assignments}','')
                     if tag != key:
                         pass
                     else:
-                        #if text is None, replace with empty string
                         if port.text is None:
-                            text = ''
+                            pass
                         else:
                             text = port.text
                         portData[key] = text
-                        #final data quality check, if these keys do not exist create them, fill with empty string.
-                        if portData.get(key, -1) != -1:
-                            pass
-                        else:
-                            portData[key] = ''
-
-
+                        
             cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (portData['number'],portData['name'],portData['description'],portData['protocol']))
-            db.commit()
+        db.commit()
         db.close()
 
 def search_port(number):
