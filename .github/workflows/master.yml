@@ -1,0 +1,26 @@
+
+name: CI-Tests-master
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: (Util) Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: util_extract_branch
+
+
+    - name: Container image scan
+      uses: Azure/container-scan@v0
+      with:
+         image-name: karldreher/knowyourports:${{ steps.util_extract_branch.outputs.branch }}

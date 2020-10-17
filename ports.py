@@ -7,10 +7,6 @@ from collections import namedtuple
 sqlite_database = 'ports.sqlite'
 sqlite_database_ro = 'file:ports.sqlite?mode=ro'
 
-class empty_text:
-    def __init__(self):
-        self.text = ""
-
 labels = ['number','name','description','protocol']
 
 def setup_db():
@@ -27,55 +23,33 @@ def setup_db():
     db.commit()
     db.close()
 
-def listports():
-    #function mainly for testing purposes, to gauge the quality of the data.
-        tree = ET.parse('service-names-port-numbers.xml')
-        root = tree.getroot()
-        for port in root.findall('{http://www.iana.org/assignments}record'):
-                number = port.find('{http://www.iana.org/assignments}number')
-                if number == None:
-                    number = empty_text()
-                
-                name = port.find('{http://www.iana.org/assignments}name')
-                if name == None:
-                    name = empty_text()
-                
-                description = port.find('{http://www.iana.org/assignments}description')
-                if description == None:
-                    description = empty_text()
-                
-
-                protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if protocol == None:
-                    protocol = empty_text()
-                
-                print(number.text,name.text,description.text,protocol.text)
-
 def update_db():
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
 
         db = sqlite3.connect(sqlite_database)
         cur = db.cursor()
-        for port in root.findall('{http://www.iana.org/assignments}record'):
-                number = port.find('{http://www.iana.org/assignments}number')
-                if number == None:
-                    number = empty_text()
-                
-                name = port.find('{http://www.iana.org/assignments}name')
-                if name == None:
-                    name = empty_text()
-                
-                description = port.find('{http://www.iana.org/assignments}description')
-                if description == None:
-                    description = empty_text()
-                
+        keys = {'number','name','description','protocol'}
+        for record in root.findall('{*}record'):
+            portData = dict.fromkeys(keys)
+            for key in keys:
+                #ensure all keys are filled with some data.
+                portData[key] = ''
 
-                protocol = port.find('{http://www.iana.org/assignments}protocol')
-                if protocol == None:
-                    protocol = empty_text()
-
-                cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (number.text,name.text,description.text,protocol.text))
+            for port in record:
+                for key in keys:         
+                    #if namespace is present (which it will be), remove it
+                    tag = port.tag.replace('{http://www.iana.org/assignments}','')
+                    if tag != key:
+                        pass
+                    else:
+                        if port.text is None:
+                            pass
+                        else:
+                            text = port.text
+                        portData[key] = text
+                        
+            cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (portData['number'],portData['name'],portData['description'],portData['protocol']))
         db.commit()
         db.close()
 
@@ -98,5 +72,5 @@ def search_port(number):
         
 
         else:
-                return None
+            return None
 
