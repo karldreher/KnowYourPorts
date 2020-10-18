@@ -3,3 +3,4 @@
 .git*
 LICENSE
 Dockerfile
+fly.toml
