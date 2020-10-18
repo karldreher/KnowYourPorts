@@ -12,7 +12,8 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-
+    
+    steps:
     - name: Container image scan
       uses: Azure/container-scan@v0
       with:
