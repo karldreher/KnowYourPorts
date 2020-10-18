@@ -1,13 +1,13 @@
 
-name: CI-Tests-master
+name: development-container-scan
 
 on:
   push:
     branches: 
-      - master
+      - development
   pull_request:
     branches:
-      - master
+      - development
 
 jobs:
   scan:

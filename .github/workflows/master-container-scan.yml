@@ -1,0 +1,20 @@
+
+name: master-container-scan
+
+on:
+  push:
+    branches: 
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Container image scan
+      uses: Azure/container-scan@v0
+      with:
+         image-name: karldreher/knowyourports:latest

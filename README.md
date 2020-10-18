@@ -1,11 +1,11 @@
-[![CI-Tests: development](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests-development/badge.svg?branch=development)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3A.github%2Fworkflows%2Fmaster.yml) [![CI-Tests: master](https://github.com/karldreher/KnowYourPorts/workflows/CI-Tests-master/badge.svg?branch=master)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3A.github%2Fworkflows%2Fdevelopment.yml)
+[![development-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/development-container-scan/badge.svg?branch=development)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Adevelopment-container-scan) [![master-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/master-container-scan/badge.svg?branch=master)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Amaster-container-scan)
 
 # KnowYourPorts
 KnowYourPorts is a web application for looking up TCP/IP ports.  
 
 This can be used to quickly check a TCP/IP port number for it's function.  
 
-You can check out a hosted version here:  https://knowyourports.azurewebsites.net/
+You can check out a hosted version here:  https://knowyourports.fly.dev/
 
 
 A good IT professional should memorize the well-known ports, but an even better one will use a tool like this to keep their brainpower free for more practical matters.  
