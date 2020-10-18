@@ -1,4 +1,4 @@
-[![development-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/development-container-scan/badge.svg?branch=development)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Adevelopment-container-scan) [![master-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/master-container-scan/badge.svg?branch=master)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Amaster-container-scan)
+[![development-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/development-container-scan/badge.svg?branch=development)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Adevelopment-container-scan) [![master-container-scan](https://github.com/karldreher/KnowYourPorts/workflows/master-container-scan/badge.svg?branch=master)](https://github.com/karldreher/KnowYourPorts/actions?query=workflow%3Amaster-container-scan) ![Fly Deploy](https://github.com/karldreher/KnowYourPorts/workflows/Fly%20Deploy/badge.svg)
 
 # KnowYourPorts
 KnowYourPorts is a web application for looking up TCP/IP ports.  
