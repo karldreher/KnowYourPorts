@@ -63,11 +63,11 @@ def search_port(number):
         #for now, fetchone to get single entry.
         #some items are duped in the DB, when "instant search" can be implemented in web,
         #clean up the dupes and change this to fetchall.
-        row = cur.fetchone()
+        rows = cur.fetchall()
         db.close()
         
-        if row != None:
-            result = namedtuple("Port", labels)(*row)
+        if rows is not None:
+            result = [namedtuple("Port", labels)(*row) for row in rows]
             return result
         
 

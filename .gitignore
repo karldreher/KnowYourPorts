@@ -55,3 +55,6 @@ __pycache__/
 *.sqlite
 service-names-port-numbers.xml
 healthcheck.log
+
+# VirtualEnvironments
+.venv
