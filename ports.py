@@ -69,8 +69,3 @@ def search_port(number):
         if rows is not None:
             result = [namedtuple("Port", labels)(*row) for row in rows]
             return result
-        
-
-        else:
-            return None
-

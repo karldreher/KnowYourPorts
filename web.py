@@ -31,7 +31,7 @@ def port_response(submitted_port):
         abort(400)
 
     search_result = ports.search_port(portInt)
-    if search_result is not None:
+    if search_result:
         success = True
         result = search_result
     else:
