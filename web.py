@@ -1,11 +1,15 @@
 import ports
 import os
 from flask import Flask, render_template, request, url_for, abort, redirect
+from flask_sqlalchemy import SQLAlchemy
 import waitress
 
 #if PORT env is specified, use that, otherwise use port 5000 flask default
 PORT = os.environ.get('PORT', 5000)
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ports.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+ports.db.init_app(app)
 
 @app.route('/index')
 @app.route('/', methods=['GET'])
@@ -46,6 +50,6 @@ def healthcheck():
     return 'ok'
 
 if __name__ == "__main__":
-    ports.setup_db()
-    ports.update_db()
+    ports.setup_db(app)
+    ports.update_db(app)
     waitress.serve(app, host='0.0.0.0', port=PORT)
