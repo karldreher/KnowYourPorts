@@ -1,45 +1,40 @@
 import xml.etree.ElementTree as ET
-import os
-import sqlite3
-import sys
-from collections import namedtuple
+from flask_sqlalchemy import SQLAlchemy
 
-sqlite_database = 'ports.sqlite'
-sqlite_database_ro = 'file:ports.sqlite?mode=ro'
+db = SQLAlchemy()
 
-labels = ['number','name','description','protocol']
 
-def setup_db():
-    db = None
-    db_exist = os.path.isfile(sqlite_database)
-    if db_exist == True:
-        os.remove(sqlite_database)
-    else:
-        pass
-    #connect to db and create table for ports.  
-    db = sqlite3.connect(sqlite_database)
-    cur = db.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS PORTS(Record INTEGER PRIMARY KEY AUTOINCREMENT, Port TEXT, Name TEXT, Description TEXT, Protocol TEXT)")
-    db.commit()
-    db.close()
+class Port(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    number = db.Column(db.Integer)
+    name = db.Column(db.String)
+    description = db.Column(db.String)
+    protocol = db.Column(db.String)
 
-def update_db():
+
+def setup_db(app):
+    with app.app_context():
+        db.reflect()
+        db.drop_all()
+        db.create_all()
+
+
+def update_db(app):
+    with app.app_context():
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
+        keys = {'number', 'name', 'description', 'protocol'}
 
-        db = sqlite3.connect(sqlite_database)
-        cur = db.cursor()
-        keys = {'number','name','description','protocol'}
         for record in root.findall('{*}record'):
             portData = dict.fromkeys(keys)
             for key in keys:
-                #ensure all keys are filled with some data.
+                # ensure all keys are filled with some data.
                 portData[key] = ''
 
             for port in record:
-                for key in keys:         
-                    #if namespace is present (which it will be), remove it
-                    tag = port.tag.replace('{http://www.iana.org/assignments}','')
+                for key in keys:
+                    # if namespace is present (which it will be), remove it
+                    tag = port.tag.replace('{http://www.iana.org/assignments}', '')
                     if tag != key:
                         pass
                     else:
@@ -48,29 +43,12 @@ def update_db():
                         else:
                             text = port.text
                         portData[key] = text
-                        
-            cur.execute("INSERT INTO PORTS VALUES (null,?,?,?,?);", (portData['number'],portData['name'],portData['description'],portData['protocol']))
-        db.commit()
-        db.close()
+            port = Port(number=portData['number'], name=portData['name'], description=portData['description'],
+                        protocol=portData['protocol'])
+            db.session.add(port)
+        db.session.commit()
+
 
 def search_port(number):
-        query = str(number)
-        db = sqlite3.connect(sqlite_database_ro, uri=True)
-        cur = db.cursor()
-        cur.execute("SELECT Port,Name,Description,upper(Protocol) FROM PORTS WHERE Port=?", (query,))
-        db.commit()
-
-        #for now, fetchone to get single entry.
-        #some items are duped in the DB, when "instant search" can be implemented in web,
-        #clean up the dupes and change this to fetchall.
-        row = cur.fetchone()
-        db.close()
-        
-        if row != None:
-            result = namedtuple("Port", labels)(*row)
-            return result
-        
-
-        else:
-            return None
-
+    port_number = str(number)
+    return Port.query.filter_by(number=port_number).first()
