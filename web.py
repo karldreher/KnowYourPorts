@@ -50,6 +50,4 @@ def healthcheck():
     return 'ok'
 
 if __name__ == "__main__":
-    ports.setup_db(app)
-    ports.update_db(app)
     waitress.serve(app, host='0.0.0.0', port=PORT)

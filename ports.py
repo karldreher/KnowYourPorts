@@ -1,7 +1,13 @@
 import xml.etree.ElementTree as ET
+import os
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 
-db = SQLAlchemy()
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ports.sqlite'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 
 class Port(db.Model):
@@ -13,14 +19,10 @@ class Port(db.Model):
 
 
 def setup_db(app):
+    db.init_app(app)
     with app.app_context():
-        db.reflect()
-        db.drop_all()
         db.create_all()
 
-
-def update_db(app):
-    with app.app_context():
         tree = ET.parse('service-names-port-numbers.xml')
         root = tree.getroot()
         keys = {'number', 'name', 'description', 'protocol'}
@@ -52,3 +54,7 @@ def update_db(app):
 def search_port(number):
     port_number = str(number)
     return Port.query.filter_by(number=port_number).first()
+
+if __name__ == "__main__":
+    if (os.path.exists("ports.sqlite") == False):
+        setup_db(app)
