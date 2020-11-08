@@ -12,6 +12,7 @@
     </section>
     {% if result %}
         <section class="output">
+			<div class="card">
             {% if success == True and result.name|length %}
             {# Success: show name and description if present #}
                 <h3>{{ port }} is the port number for</h3>
@@ -33,6 +34,7 @@
                 <h2 class="bad">{{ result }}</h2>
 
             {% endif %}
+			</div>
         </section>
     {% endif %}
 {% endblock %}
