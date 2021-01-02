@@ -1,6 +1,7 @@
 *.md
 *.xml
 .git*
+.sqlite
 LICENSE
 Dockerfile
 fly.toml
