@@ -1,7 +1,7 @@
 app = "knowyourports"
 
 [build]
-  image = "karldreher/knowyourports:latest"
+  image = "karldreher/knowyourports:2101"
 
 
 [[services]]
