@@ -1,13 +1,14 @@
+@import 'card.css';
 * {
 	box-sizing: border-box;
 	font-family: monospace;
-
 }
-a:link{
+
+a:link {
 	color: black
 }
 
-#main{
+#main {
 	border-radius: 2%;
 	font-size: x-large;
 	font-weight: bold;
@@ -22,64 +23,43 @@ button {
 	text-align: center;
 	cursor: pointer;
 }
-.user{
+
+.user {
 	font-size: large;
-	margin-top:5%;
-	margin-right:auto;
+	margin-top: 5%;
+	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 15px;
 	width: 270px;
 	text-align: center;
 }
 
-.result{
+.result {
 	margin-top: -20px;
 	background-color: lightgreen;
-	
 }
 
-.bad{
+.bad {
 	margin-top: -20px;
 	background-color: gold;
 }
-
-.card {
-	/* Add shadows to create the "card" effect */
-	box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
-	transition: 0.3s;
-	margin: 10px;
-	margin-top: 10px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	}
-  
-  /* On mouse-over, add a deeper shadow */
-  .card:hover {
-	box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
-  }
-  
-
 
 @media (max-width: 767px) {
 	html, body {
 		margin: 0;
 		padding: 0;
 	}
-
 	button {
 		width: 90%;
 		max-width: 300px;
 		margin: 0 auto;
 	}
-
 	#main {
 		font-size: 16px;
 	}
-	
-	header > h2 {
+	header>h2 {
 		font-size: 2rem;
 	}
-	
 	.user {
 		font-size: 1.3rem;
 		padding: .6rem .8rem;
@@ -87,10 +67,7 @@ button {
 		max-width: 300px;
 		margin-bottom: 1.5rem;
 	}
-	
-	
 	.result, .bad {
 		padding: .8em .2em;
 	}
-
 }
