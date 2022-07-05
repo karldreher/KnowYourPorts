@@ -1,6 +1,7 @@
 import ports
 import os
-from flask import Flask, render_template, request, url_for, abort, redirect
+from flask_restful import Resource, Api
+from flask import Flask, render_template, request, url_for, abort, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import waitress
 
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ports.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 ports.db.init_app(app)
+api = Api(app)
 
 @app.route('/index')
 @app.route('/', methods=['GET'])
@@ -48,6 +50,12 @@ def port_response(submitted_port):
 @app.route ('/healthcheck')
 def healthcheck():
     return 'ok'
+
+class port(Resource):
+    def get(self, num:int):
+        result = ports.search_port(num)
+        return jsonify(port=num,name=result.name,description=result.description)
+api.add_resource(port, '/api/port/<int:num>')
 
 if __name__ == "__main__":
     waitress.serve(app, host='0.0.0.0', port=PORT)
