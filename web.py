@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 from flask import Flask, render_template, request, url_for, abort, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import waitress
-PORT = os.environ.get('PORT', 7000)
+PORT = os.environ.get('PORT', 5000)
 
 def create_app():
     #if PORT env is specified, use that, otherwise use port 5000 flask default
