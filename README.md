@@ -24,7 +24,7 @@ Docker is the preferred methodology for deploying KnowYourPorts.  A dockerfile i
 
 ```bash
 $ docker build -t knowyourports
-$ docker run -p 80:5000 knowyourports 
+$ docker run -p 80:8080 knowyourports 
 
 ```
 
@@ -43,7 +43,7 @@ After installing the requirements, start "web.py".  Open a web browser to the sp
 $ wget https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
 $ pip install -r requirements.txt
 $ python ports.py # required to build the sqlite database backend from the downloaded xml
-$ (export PORT=5000; python web.py) # This sets the port to run on, 5000 is default
+$ python web.py # Start the service on port 8080
 ```
 
 

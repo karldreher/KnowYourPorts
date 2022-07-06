@@ -39,8 +39,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Switch to non-priveleged user
 USER flask-user
 
-# Make port 5000 available to the world outside this container
-EXPOSE 5000
+# Make port 8080 available to the world outside this container
+EXPOSE 8080
 
 # Run a healthcheck every 30 seconds
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s CMD python /usr/local/src/knowyourports/healthcheck.py

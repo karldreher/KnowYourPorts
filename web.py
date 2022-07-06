@@ -4,10 +4,8 @@ from flask_restful import Resource, Api
 from flask import Flask, render_template, request, url_for, abort, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import waitress
-PORT = os.environ.get('PORT', 5000)
 
 def create_app():
-    #if PORT env is specified, use that, otherwise use port 5000 flask default
     app = Flask(__name__)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ports.sqlite'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -23,6 +21,7 @@ def create_app():
     class health(Resource):
         def get(self):
             return jsonify(message='ok')
+
     api.add_resource(port, '/api/port/<int:num>')
     api.add_resource(health, '/health')
 
@@ -53,4 +52,4 @@ def create_app():
 
 if __name__ == "__main__":
     app=create_app()
-    waitress.serve(app, host='0.0.0.0', port=PORT)
+    waitress.serve(app)

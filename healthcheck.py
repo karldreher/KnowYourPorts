@@ -3,14 +3,13 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 
-PORT = os.environ.get('PORT', 5000)
 endpoint = '/health'
 
 handlerlist = []
 handlerlist.append(RotatingFileHandler(filename='healthcheck.log', mode='a', maxBytes=10240, backupCount=1))
 logging.basicConfig(handlers=handlerlist, format='%(asctime)s %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p',level='INFO')
 
-connection = http.client.HTTPConnection('localhost',PORT)
+connection = http.client.HTTPConnection('localhost',8080)
 
 try:
     request = connection.request('GET', endpoint)
