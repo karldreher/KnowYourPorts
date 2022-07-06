@@ -1,3 +1,4 @@
+from ast import Num
 from flask import url_for
 import requests
 
@@ -8,8 +9,8 @@ def test_healthcheck(client):
     assert client.get(url_for('healthcheck')).status_code == 200
 
 def test_port_response(client,db):
-    assert client.get(url_for('port_response', submitted_port=23)).status_code == 200
-    assert client.get(url_for('port_response', submitted_port=1111111111)).status_code == 404
+    assert client.get(url_for('port_response', num=23)).status_code == 200
+    assert client.get(url_for('port_response', num=1111111111)).status_code == 404
 
 def test_api(client,db):
     #Good result, expect 200
