@@ -1,6 +1,4 @@
-from ast import Num
 from flask import url_for
-import requests
 
 def test_entry(client):
     assert client.get(url_for('entry')).status_code == 200
