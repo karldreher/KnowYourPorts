@@ -26,8 +26,7 @@ app = "knowyourports"
 
   [[services.http_checks]]
     interval = 30000
-	method = "get"
-	path = "/healthcheck"
-	protocol = "http"
+	  method = "get"
+	  path = "/health"
+	  protocol = "http"
     timeout = 3000
-	

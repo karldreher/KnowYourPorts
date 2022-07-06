@@ -19,7 +19,13 @@ def create_app():
         def get(self, num:int):
             result = ports.search_port(num)
             return jsonify(port=num,name=result.name,description=result.description)
+
+    class health(Resource):
+        def get(self):
+            return jsonify(message='ok')
     api.add_resource(port, '/api/port/<int:num>')
+    api.add_resource(health, '/health')
+
 
     ## Frontend template route defintions
     @app.route('/index')
@@ -42,11 +48,6 @@ def create_app():
         result = ports.search_port(num)
 
         return render_template('input_page.html', port=num, result=result)
-
-
-    @app.route ('/healthcheck')
-    def healthcheck():
-        return 'ok'
 
     return app
 

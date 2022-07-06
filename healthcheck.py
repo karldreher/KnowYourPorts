@@ -4,7 +4,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 PORT = os.environ.get('PORT', 5000)
-endpoint = '/healthcheck'
+endpoint = '/health'
 
 handlerlist = []
 handlerlist.append(RotatingFileHandler(filename='healthcheck.log', mode='a', maxBytes=10240, backupCount=1))
@@ -16,7 +16,7 @@ try:
     request = connection.request('GET', endpoint)
     response = connection.getresponse()
     responsestring = 'Endpoint ' + endpoint + ' responded ' + str(response.status) + ' ' + response.reason + '.  '
-    
+
 
     if response.status == 200:
         logging.info(responsestring)
