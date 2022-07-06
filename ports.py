@@ -53,7 +53,7 @@ def setup_db(app):
 
 def search_port(number):
     port_number = str(number)
-    return Port.query.filter_by(number=port_number).first()
+    return Port.query.filter_by(number=port_number).first_or_404()
 
 if __name__ == "__main__":
     if (os.path.exists("ports.sqlite") == False):
