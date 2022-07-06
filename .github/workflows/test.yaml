@@ -1,0 +1,17 @@
+name: Test
+on:
+    push:
+      branches:
+        - master
+        - development
+
+jobs:
+  deploy:
+      name: Deploy app
+      runs-on: ubuntu-latest
+      steps:
+        - name: Install Requirements
+          run: pip3 install -r requirements-dev.txt
+
+        - name: Run Tests
+          run: python3 -m pytest -v
