@@ -26,3 +26,9 @@ jobs:
           echo "Status:    ${{ steps.buildx.outputs.status }}"
           echo "Flags:     ${{ steps.buildx.outputs.flags }}"
           echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: karldreher
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
