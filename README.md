@@ -1,18 +1,18 @@
 ![Fly Deploy](https://github.com/karldreher/KnowYourPorts/workflows/Fly%20Deploy/badge.svg)
 
 # KnowYourPorts
-KnowYourPorts is a web application for looking up TCP/IP ports.  
+KnowYourPorts is a web application for looking up TCP/IP ports.
 
-This can be used to quickly check a TCP/IP port number for it's function.  
+This can be used to quickly check a TCP/IP port number for it's function.
 
 You can check out a hosted version here:  https://knowyourports.fly.dev/
 
 
-A good IT professional should memorize the well-known ports, but an even better one will use a tool like this to keep their brainpower free for more practical matters.  
+A good IT professional should memorize the well-known ports, but an even better one will use a tool like this to keep their brainpower free for more practical matters.
 
 KnowYourPorts is built on Python 3 and uses the Service Name and Port Number Registry from IANA, located here: http://www.iana.org/assignments/port-numbers
 
-KnowYourPorts uses several other components:  
+KnowYourPorts uses several other components:
 * Flask for the web application framework.
 * SQLITE for data storage.
 * Waitress to act as a WSGI server to the Flask app.
@@ -24,7 +24,7 @@ Docker is the preferred methodology for deploying KnowYourPorts.  A dockerfile i
 
 ```bash
 $ docker build -t knowyourports
-$ docker run -p 80:8080 knowyourports 
+$ docker run -p 80:8080 knowyourports
 
 ```
 
@@ -33,7 +33,7 @@ You can also utilize the official [Docker Hub version of KnowYourPorts](https://
 docker pull karldreher/knowyourports
 ```
 
-There are two tags on the official build, `knowyourports:latest` which is built from the `master` branch of this repository, and `knowyourports:development` which follows the `development` branch.
+There are two tags on the official build, `knowyourports:latest` which is built from the `master` branch of this repository, and `knowyourports:development` which follows the `development` branch.  `latest` is considered stable, but will be a rolling release (this may or may not be advantageous depending on your perspsective).
 
 
 ## Usage - Non-Docker Python Config

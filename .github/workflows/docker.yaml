@@ -32,3 +32,17 @@ jobs:
         with:
           username: karldreher
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push docker image (development)
+        uses: docker/build-push-action@v3
+        if: github.ref_name == 'development'
+        with:
+          push: true
+          tags: karldreher/knowyourports:development
+
+      - name: Build and push docker image (latest)
+        uses: docker/build-push-action@v3
+        if: github.ref_name == 'master'
+        with:
+          push: true
+          tags: karldreher/knowyourports:latest
