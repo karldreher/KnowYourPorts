@@ -1,9 +1,8 @@
-import ports
-import os
 from flask_restful import Resource, Api
-from flask import Flask, render_template, request, url_for, abort, redirect, jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, url_for, redirect, jsonify
 import waitress
+import ports
+
 
 def create_app():
     app = Flask(__name__)
@@ -11,22 +10,23 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     ports.db.init_app(app)
 
-    ## API route definitions
+    # API route definitions
     api = Api(app)
-    class port(Resource):
-        def get(self, num:int):
-            result = ports.search_port(num)
-            return jsonify(port=num,name=result.name,description=result.description)
 
-    class health(Resource):
+    class Port(Resource):
+        def get(self, num: int):
+            result = ports.search_port(num)
+            return jsonify(port=num, name=result.name, description=result.description)
+
+    class Health(Resource):
         def get(self):
             return jsonify(message='ok')
 
-    api.add_resource(port, '/api/port/<int:num>')
-    api.add_resource(health, '/health')
+    api.add_resource(Port, '/api/port/<int:num>')
+    api.add_resource(Health, '/health')
 
+    # Frontend template route defintions
 
-    ## Frontend template route defintions
     @app.route('/index')
     @app.route('/', methods=['GET'])
     def entry():
@@ -34,13 +34,13 @@ def create_app():
 
     @app.route('/', methods=['POST'])
     def submit():
-        #mysterious, but necessary step.  Without next line, request is null.
+        # mysterious, but necessary step.  Without next line, request is null.
         request.get_data()
         userinput = request.form['port_input']
         return redirect(url_for('port_response', num=userinput), 303)
 
     @app.route('/port/<int:num>', methods=['GET'])
-    def port_response(num:int):
+    def port_response(num: int):
         if num == '':
             return render_template('input_page.html', result=False)
 
@@ -50,6 +50,7 @@ def create_app():
 
     return app
 
+
 if __name__ == "__main__":
-    app=create_app()
-    waitress.serve(app)
+    flask_app = create_app()
+    waitress.serve(flask_app)
