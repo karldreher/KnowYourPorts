@@ -1,6 +1,5 @@
 import os
 from web import create_app
-from urllib.request import urlopen
 import requests
 import os
 import ports
