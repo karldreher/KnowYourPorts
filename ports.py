@@ -11,11 +11,11 @@ db = SQLAlchemy(app)
 
 
 class Port(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    number = db.Column(db.Integer)
-    name = db.Column(db.String)
-    description = db.Column(db.String)
-    protocol = db.Column(db.String)
+    id = db.Column(db.Integer, primary_key=True,index=True)
+    number = db.Column(db.Integer,index=True)
+    name = db.Column(db.String,index=True)
+    description = db.Column(db.String,index=True)
+    protocol = db.Column(db.String,index=True)
 
 
 def setup_db(app):
