@@ -17,9 +17,8 @@ KnowYourPorts uses several other components:
 * SQLITE for data storage.
 * Waitress to act as a WSGI server to the Flask app.
 
-
-
-## Usage - Docker
+# Deployment
+## Docker
 Docker is the preferred methodology for deploying KnowYourPorts.  A dockerfile is included in this repo which fulfills all the requirements above.  With Docker installed, this is easy to build and run.
 
 ```bash
@@ -36,7 +35,7 @@ docker pull karldreher/knowyourports
 There are two tags on the official build, `knowyourports:latest` which is built from the `master` branch of this repository, and `knowyourports:development` which follows the `development` branch.  `latest` is considered stable, but will be a rolling release (this may or may not be advantageous depending on your perspsective).
 
 
-## Usage - Non-Docker Python Config
+## Non-Docker Python Deployment
 After installing the requirements, start "web.py".  Open a web browser to the specified URL.  You now have a simple webserver which runs KnowYourPorts.  This is most typically used for development purposes.
 
 ```bash

@@ -22,7 +22,7 @@ def create_app():
         def get(self):
             return jsonify(message='ok')
 
-    api.add_resource(Port, '/api/port/<int:num>')
+    api.add_resource(Port, '/api/v1/port/<int:num>')
     api.add_resource(Health, '/health')
 
     # Frontend template route defintions
