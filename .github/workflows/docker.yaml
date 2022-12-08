@@ -46,3 +46,7 @@ jobs:
         with:
           push: true
           tags: karldreher/knowyourports:latest
+
+  fly_deploy:
+    uses: ./.github/workflows/fly-CD.yaml
+    if: github.ref_name == 'master'
