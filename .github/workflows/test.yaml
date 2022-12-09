@@ -1,21 +1,21 @@
 name: Test
 on:
-    push:
-      branches:
-        - master
-        - development
-    # Allows running this workflow manually from the Actions tab
-    workflow_dispatch:
+  push:
+    branches:
+      - master
+      - development
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   test:
-      name: Test
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v2
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-        - name: Install Requirements
-          run: pip3 install -r requirements-dev.txt
+      - name: Install Requirements
+        run: pip3 install -r requirements-dev.txt
 
-        - name: Run Tests
-          run: python3 -m pytest -v
+      - name: Run Tests
+        run: python3 -m pytest -v
